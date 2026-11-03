@@ -33,7 +33,15 @@ jobs:
           APKSIGNER=$(find "$SDK/build-tools" -type f -name apksigner | sort -V | tail -n 1)
           test -n "$APKSIGNER"
           "$APKSIGNER" verify --verbose --print-certs "$APK"
-      
+
+      - name: Check APK Permissions
+        run: |
+          SDK="${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+          AAPT=$(find "$SDK/build-tools" -type f -name aapt | sort -V | tail -n 1)
+          test -n "$AAPT"
+          "$AAPT" dump permissions "$APK"
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:

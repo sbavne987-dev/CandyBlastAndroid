@@ -6,6 +6,7 @@
     <application
         android:allowBackup="true"
         android:label="Candy Blast"
+        android:icon="@drawable/candy_logo"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:usesCleartextTraffic="false">
 

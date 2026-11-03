@@ -53,7 +53,14 @@ class MainActivity : Activity() {
         webView.settings.allowFileAccess = false
 
         webView.webChromeClient = WebChromeClient()
-        webView.webViewClient = WebViewClient()
+        webView.webViewClient = object : WebViewClient() {
+    override fun shouldOverrideUrlLoading(
+        view: WebView,
+        request: android.webkit.WebResourceRequest
+    ): Boolean {
+        return request.url.host != "sbavne987-dev.github.io"
+    }
+        }
 
         webView.setBackgroundColor(android.graphics.Color.BLACK)
 
